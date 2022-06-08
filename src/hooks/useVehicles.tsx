@@ -24,7 +24,7 @@ export function VehiclesProvider({ children }: VehicleProviderProps) {
   const [vehicles, setVehicles] = useState<Vehicle[]>([])
   
   useEffect(() => {
-    const headers = {"Access-Control-Allow-Origin": "https://freestop-front.vercel.app/", origin: "https://freestop-front.vercel.app/"}
+    const headers = {"Access-Control-Allow-Origin": "https://freestop-front.vercel.app", origin: "https://freestop-front.vercel.app"}
     api
       .get('/vehicles', { headers })
       .then(response => setVehicles(response.data))
@@ -38,7 +38,7 @@ export function VehiclesProvider({ children }: VehicleProviderProps) {
     if(!model || !plateNumber) { 
       alert('Modelo e Placa são obrigatórios. Digite os dados corretamente para seguir')
     } else {
-      const headers = {"Access-Control-Allow-Origin": "https://freestop-front.vercel.app/"}
+      const headers = {"Access-Control-Allow-Origin": "https://freestop-front.vercel.app"}
       const response = await api.post('/vehicles', { 
         headers,
         ...vehicleInput,
@@ -59,7 +59,7 @@ export function VehiclesProvider({ children }: VehicleProviderProps) {
     const time = calcTempo(new Date().getTime() - new Date(createdAt).getTime());
 
     if(!confirm(`o veiculo ${model} permaneceu por ${time}. Deseja encerrar?`)) return;
-    const headers = {"Access-Control-Allow-Origin": "https://freestop-front.vercel.app/"}
+    const headers = {"Access-Control-Allow-Origin": "https://freestop-front.vercel.app"}
     const response = await api.delete("/vehicles/plateNumber",{ headers, data: { plateNumber }} )
     const { vehicles } = response.data
     setVehicles(vehicles)
