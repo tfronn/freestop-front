@@ -24,7 +24,7 @@ export function VehiclesProvider({ children }: VehicleProviderProps) {
   const [vehicles, setVehicles] = useState<Vehicle[]>([])
   
   useEffect(() => {
-    const headers = {"Access-Control-Allow-Origin": "https://freestop-front.vercel.app/"}
+    const headers = {"Access-Control-Allow-Origin": "https://freestop-front.vercel.app/", origin: "https://freestop-front.vercel.app/"}
     api
       .get('/vehicles', { headers })
       .then(response => setVehicles(response.data))
